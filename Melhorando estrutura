@@ -1,0 +1,33 @@
+create database if not exists clinica_molina
+default character set utf8mb4
+collate utf8mb4_0900_ai_ci;
+use clinica_molina
+
+create table if not exists molina_paciente (
+	id_paciente int primary key AUTO_INCREMENT,
+	nome varchar(30) not null,
+	data_nasc DATE,
+	altura DECIMAL(3,2),
+	status_cad BOOLEAN,
+	genero enum ("M","F")
+
+) character set utf8mb4;
+desc molina_paciente;
+
+create table if not exists molina_medico(
+	id_medico int primary key AUTO_INCREMENT,
+	nome varchar(30)
+
+) character set utf8mb4;
+desc molina_medico;
+
+create table if not exists molina_consulta(
+	id_consulta int primary key AUTO_INCREMENT,
+	data_consul DATETIME
+	id_paciente int,
+	id_medico int,
+	foreign key (id_paciente) REFERENCES paciente(id),
+	Foreign Key (id_medico) REFERENCES medico(id)
+
+) character set utf8mb4;
+desc molina_consulta;
